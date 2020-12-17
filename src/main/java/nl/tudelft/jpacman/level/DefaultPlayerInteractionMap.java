@@ -40,6 +40,11 @@ public class DefaultPlayerInteractionMap implements CollisionMap {
                 pellet.leaveSquare();
                 player.addPoints(pellet.getValue());
             });
+        collisionMap.onCollision(Player.class, Fruit.class,
+            (player, fruit) -> {
+                fruit.leaveSquare();
+                player.addPoints(fruit.getValue());
+            });
         return collisionMap;
     }
 }

@@ -52,6 +52,7 @@ public class MapParser {
      * <li>' ' (space) an empty square.
      * <li>'#' (bracket) a wall.
      * <li>'.' (period) a square with a pellet.
+     * <li>'F' (capital F) a square with a fruit.
      * <li>'P' (capital P) a starting square for players.
      * <li>'G' (capital G) a square with a ghost.
      * </ul>
@@ -119,6 +120,11 @@ public class MapParser {
                 Square pelletSquare = boardCreator.createGround();
                 grid[x][y] = pelletSquare;
                 levelCreator.createPellet().occupy(pelletSquare);
+                break;
+            case 'F':
+                Square fruitSquare = boardCreator.createGround();
+                grid[x][y] = fruitSquare;
+                levelCreator.createFruit().occupy(fruitSquare);
                 break;
             case 'G':
                 Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost());

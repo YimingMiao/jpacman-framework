@@ -72,17 +72,21 @@ public class LauncherSmokeTest {
         game.move(player, Direction.WEST);
         assertThat(player.getScore()).isEqualTo(10);
 
+        //get points from fruit
+        move(game, Direction.EAST, 2);
+        assertThat(player.getScore()).isEqualTo(30);
+
         // try to move as far as we can
         move(game, Direction.EAST, 7);
-        assertThat(player.getScore()).isEqualTo(60);
+        assertThat(player.getScore()).isEqualTo(70);
 
         // move towards the monsters
         move(game, Direction.NORTH, 6);
-        assertThat(player.getScore()).isEqualTo(120);
+        assertThat(player.getScore()).isEqualTo(130);
 
         // no more points to earn here.
         move(game, Direction.WEST, 2);
-        assertThat(player.getScore()).isEqualTo(120);
+        assertThat(player.getScore()).isEqualTo(130);
 
         move(game, Direction.NORTH, 2);
 
@@ -97,6 +101,10 @@ public class LauncherSmokeTest {
 
         game.stop();
         assertThat(game.isInProgress()).isFalse();
+
+        // If the user clink on "start", the game will restart
+        // game.start();
+        // assertThat(game.isInProgress()).isTrue();
     }
 
     /**

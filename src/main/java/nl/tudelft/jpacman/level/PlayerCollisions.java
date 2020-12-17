@@ -27,6 +27,9 @@ public class PlayerCollisions implements CollisionMap {
         else if (mover instanceof Pellet) {
             pelletColliding((Pellet) mover, collidedOn);
         }
+        else if (mover instanceof Fruit) {
+            fruitColliding((Fruit) mover, collidedOn);
+        }
     }
 
     private void playerColliding(Player player, Unit collidedOn) {
@@ -35,6 +38,9 @@ public class PlayerCollisions implements CollisionMap {
         }
         if (collidedOn instanceof Pellet) {
             playerVersusPellet(player, (Pellet) collidedOn);
+        }
+        if (collidedOn instanceof Fruit) {
+            playerVersusFruit(player, (Fruit) collidedOn);
         }
     }
 
@@ -47,6 +53,12 @@ public class PlayerCollisions implements CollisionMap {
     private void pelletColliding(Pellet pellet, Unit collidedOn) {
         if (collidedOn instanceof Player) {
             playerVersusPellet((Player) collidedOn, pellet);
+        }
+    }
+
+    private void fruitColliding(Fruit fruit, Unit collidedOn) {
+        if (collidedOn instanceof Player) {
+            playerVersusFruit((Player) collidedOn, fruit);
         }
     }
 
@@ -70,6 +82,11 @@ public class PlayerCollisions implements CollisionMap {
     public void playerVersusPellet(Player player, Pellet pellet) {
         pellet.leaveSquare();
         player.addPoints(pellet.getValue());
+    }
+
+    public void playerVersusFruit(Player player, Fruit fruit) {
+        fruit.leaveSquare();
+        player.addPoints(fruit.getValue());
     }
 
 }
